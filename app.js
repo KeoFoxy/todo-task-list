@@ -16,11 +16,22 @@ function getUserName(userId) {
     return user.name;
 }
 
-function printToDo({id, userId, title, complete}){
+function printToDo({id, userId, title, completed}){
     const li = document.createElement('li');
     li.className = 'todo-item';
     li.dataset.id = id;
-    li.innerHTML = `<span>${title} <i>by</i> <b>${getUserName(userId)}</b></span>`;
+    li.innerHTML = `<span>${title} by <b>${getUserName(userId)}</b></span>`;
+
+    const status = document.createElement('input');
+    status.type = 'checkbox';
+    status.checked = completed;
+
+    const close = document.createElement('span');
+    close.innerHTML = '&times;';
+    close.className = 'close';
+
+    li.prepend(status);
+    li.append(close);
 
     todoList.prepend(li);
 }
